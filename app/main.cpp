@@ -8,16 +8,21 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <string>
 
 #include "exampleConfig.h"
 #include "example.h"
+#include "interperter.h"
+
+
+using namespace std;
 
 /*
  * Simple main program that demontrates how access
  * CMake definitions (here the version number) from source code.
  */
 int main() {
-  std::cout << "C++ Boiler Plate v"
+  std::cout << "HobbyLang v"
             << PROJECT_VERSION_MAJOR
             << "."
             << PROJECT_VERSION_MINOR
@@ -26,10 +31,13 @@ int main() {
             << "."
             << PROJECT_VERSION_TWEAK
             << std::endl;
-  std::system("cat ../LICENSE");
 
-  // Bring in the dummy class from the example source,
-  // just to show that it is accessible from main.cpp.
-  Dummy d = Dummy();
-  return d.doSomething() ? 0 : -1;
+  while(1){
+    string text;
+    getline (cin, text);
+    Interperter interperter(text);
+    cout << interperter.expr();
+    if(interperter.getError())break;
+  }
+  return 1;
 }
