@@ -95,6 +95,16 @@ doctest.h
 ../include/interperter.h
 token.h
 ../include/token.h
+lexer.h
+../include/lexer.h
+string
+-
+
+../include/lexer.h
+token.h
+../include/token.h
+stdlib.h
+-
 string
 -
 

@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/engine.dir/src/example.cpp.o"
   "CMakeFiles/engine.dir/src/interperter.cpp.o"
   "CMakeFiles/engine.dir/src/token.cpp.o"
+  "CMakeFiles/engine.dir/src/lexer.cpp.o"
 )
 
 # Per-language clean rules from dependency scanning.

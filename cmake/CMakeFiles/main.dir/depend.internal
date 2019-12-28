@@ -5,6 +5,7 @@ CMakeFiles/main.dir/app/main.cpp.o
  ../external/doctest/doctest/doctest.h
  ../include/example.h
  ../include/interperter.h
+ ../include/lexer.h
  ../include/token.h
  /Users/asabouri/Desktop/dev/HobbyLang/app/main.cpp
  exampleConfig.h

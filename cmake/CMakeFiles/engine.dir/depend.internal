@@ -7,8 +7,13 @@ CMakeFiles/engine.dir/src/example.cpp.o
  /Users/asabouri/Desktop/dev/HobbyLang/src/example.cpp
 CMakeFiles/engine.dir/src/interperter.cpp.o
  ../include/interperter.h
+ ../include/lexer.h
  ../include/token.h
  /Users/asabouri/Desktop/dev/HobbyLang/src/interperter.cpp
+CMakeFiles/engine.dir/src/lexer.cpp.o
+ ../include/lexer.h
+ ../include/token.h
+ /Users/asabouri/Desktop/dev/HobbyLang/src/lexer.cpp
 CMakeFiles/engine.dir/src/token.cpp.o
  ../include/token.h
  /Users/asabouri/Desktop/dev/HobbyLang/src/token.cpp

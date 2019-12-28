@@ -41,6 +41,7 @@ set(SOURCES          # All .cpp files in src/
     src/example.cpp
     src/interperter.cpp
     src/token.cpp
+    src/lexer.cpp
     
 )
 set(TESTFILES        # All .cpp files in tests/

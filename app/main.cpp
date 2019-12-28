@@ -35,9 +35,10 @@ int main() {
   while(1){
     string text;
     getline (cin, text);
-    Interperter interperter(text);
+    Lexer lexer(text);
+    Interperter interperter(lexer);
     cout << interperter.expr();
-    if(interperter.getError())break;
+    if(lexer.getError())break;
   }
   return 1;
 }

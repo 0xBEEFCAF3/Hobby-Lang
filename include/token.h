@@ -7,6 +7,8 @@ enum class Type{
     INTERGER,
     PLUS,
     SUBTRACT,
+    MUL,
+    DIV,
     ENDOFFILE,
     EMPTY
 };

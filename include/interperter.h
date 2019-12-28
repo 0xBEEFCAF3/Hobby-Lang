@@ -1,5 +1,7 @@
 #include "token.h"
+#include "lexer.h"
 #include <string>
+
 
 #pragma once
 
@@ -9,26 +11,15 @@
 class Interperter
 {
 private:
-    
-    std::string _text;
-    int _pos; //pos into text
     Token _current_token;
-    bool _has_error;
-    char _current_char;
+    Lexer _lexer;
 public:
-    Interperter(std::string text);
-    int expr();
-    Token get_next_token();
-    void error();
-    void eat(Type type);
+    Interperter();
+    Interperter(Lexer lexer);
     Token getToken();
     void setToken(Token token);
-    int getPos();
-    void setPos(int pos);
-    std::string getText();
-    bool getError();
-    void advance();
-    void skipWhiteSpace();
-    int interger();
+    int expr();
+    void eat(Type type);
+    int factor();
 };
 #endif
