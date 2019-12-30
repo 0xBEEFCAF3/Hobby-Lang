@@ -32,39 +32,25 @@ void Interperter::eat(Type type)
     }
 }
 
-int Interperter::factor()
-{
-    Token token = _current_token;
-    eat(Type::INTERGER);
-    return token.getValue();
-}
-
 int Interperter::expr()
 {
-    /* Arithmetic expression parser / interpreter.
-
-        expr   : factor ((MUL | DIV) factor)*
-        factor : INTEGER
-    */
-
-   int result = factor();
-    while(_current_token.getType() == Type::DIV ||_current_token.getType() == Type::MUL
-    ||_current_token.getType() == Type::SUBTRACT ||_current_token.getType() == Type::PLUS){
+    /*
+        expr   : term ((PLUS | MINUS) term)*
+        term   : factor ((MUL | DIV) factor)*
+        factor : INTEGER | LParen expr  RParen
+     */
+    int result = term();
+    while (_current_token.getType() == Type::SUBTRACT || _current_token.getType() == Type::PLUS)
+    {
         Token token = _current_token;
         eat(token.getType());
         switch (token.getType())
         {
-        case Type::DIV:
-            result = result / factor();
-            break;
-        case Type::MUL:
-            result = result * factor();
-            break;
         case Type::SUBTRACT:
-            result = result - factor();
+            result = result - term();
             break;
         case Type::PLUS:
-            result = result + factor();
+            result = result + term();
             break;
         default:
             break;
@@ -76,4 +62,53 @@ int Interperter::expr()
         return -1;
     }
     return result;
+}
+
+int Interperter::term()
+{
+    int result = factor();
+    while (_current_token.getType() == Type::DIV || _current_token.getType() == Type::MUL)
+    {
+        Token token = _current_token;
+        eat(token.getType());
+        switch (token.getType())
+        {
+        case Type::DIV:
+            result = result / factor();
+            break;
+        case Type::MUL:
+            result = result * factor();
+            break;
+        default:
+            break;
+        }
+    }
+    if (_lexer.getError())
+    {
+        std::cout << "Syntax error.";
+        return -1;
+    }
+    return result;
+}
+
+int Interperter::factor()
+{
+    if(_lexer.getError()) return -1;
+    
+    Token token = _current_token;
+    if (token.getType() == Type::INTERGER)
+    {
+        eat(Type::INTERGER);
+        return token.getValue();
+    }
+    else if(token.getType() == Type::LPAREN)
+    {
+        eat(Type::LPAREN);
+        int result = expr();
+        eat(Type::RPAREN);
+        return result;
+    }
+
+
+    return -1;
 }

@@ -6,14 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../include/interperter.h
-token.h
-../include/token.h
-lexer.h
-../include/lexer.h
-string
--
-
 ../include/lexer.h
 token.h
 ../include/token.h
@@ -24,17 +16,13 @@ string
 
 ../include/token.h
 
-/Users/asabouri/Desktop/dev/HobbyLang/src/interperter.cpp
-interperter.h
-/Users/asabouri/Desktop/dev/HobbyLang/src/interperter.h
+/Users/asabouri/Desktop/dev/HobbyLang/src/lexer.cpp
 token.h
 /Users/asabouri/Desktop/dev/HobbyLang/src/token.h
+lexer.h
+/Users/asabouri/Desktop/dev/HobbyLang/src/lexer.h
 stdlib.h
--
-iostream
 -
 string
 -
-lexer.h
-/Users/asabouri/Desktop/dev/HobbyLang/src/lexer.h
 

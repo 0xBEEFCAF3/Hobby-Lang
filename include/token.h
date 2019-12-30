@@ -9,6 +9,8 @@ enum class Type{
     SUBTRACT,
     MUL,
     DIV,
+    LPAREN,
+    RPAREN,
     ENDOFFILE,
     EMPTY
 };

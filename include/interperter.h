@@ -19,6 +19,7 @@ public:
     Token getToken();
     void setToken(Token token);
     int expr();
+    int term();
     void eat(Type type);
     int factor();
 };

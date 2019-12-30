@@ -102,6 +102,16 @@ Token Lexer::get_next_token()
             advance();
             return Token(Type::DIV);
         }
+        if (_current_char == ')')
+        {
+            advance();
+            return Token(Type::RPAREN);
+        }
+        if (_current_char == '(')
+        {
+            advance();
+            return Token(Type::LPAREN);
+        }
         //Error state
         error();
         return Token(Type::EMPTY);
