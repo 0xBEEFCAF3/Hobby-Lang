@@ -11,6 +11,8 @@ token.h
 ../include/token.h
 parser.h
 ../include/parser.h
+lexer.h
+../include/lexer.h
 string
 -
 
@@ -23,12 +25,6 @@ string
 -
 
 ../include/parser.h
-token.h
-../include/token.h
-lexer.h
-../include/lexer.h
-interperter.h
-../include/interperter.h
 
 ../include/token.h
 
@@ -43,4 +39,16 @@ iostream
 -
 string
 -
+
+/Users/asabouri/Desktop/dev/HobbyLang/src/parser.cpp
+stdlib.h
+-
+iostream
+-
+string
+-
+interperter.h
+/Users/asabouri/Desktop/dev/HobbyLang/src/interperter.h
+lexer.h
+/Users/asabouri/Desktop/dev/HobbyLang/src/lexer.h
 

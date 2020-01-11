@@ -98,3 +98,7 @@ doctest.h
 example.h
 /Users/asabouri/Desktop/dev/HobbyLang/tests/example.h
 
+/Users/asabouri/Desktop/dev/HobbyLang/tests/main.cpp
+doctest.h
+/Users/asabouri/Desktop/dev/HobbyLang/tests/doctest.h
+
