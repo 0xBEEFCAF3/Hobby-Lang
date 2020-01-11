@@ -1,8 +1,9 @@
+#pragma once
+
 #include "token.h"
 #include <stdlib.h>
 #include <string>
 
-#pragma once
 
 #ifndef lexer_h
 #define lexer_h

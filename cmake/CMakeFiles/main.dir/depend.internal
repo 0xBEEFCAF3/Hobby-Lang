@@ -3,9 +3,13 @@
 
 CMakeFiles/main.dir/app/main.cpp.o
  ../external/doctest/doctest/doctest.h
+ ../include/AST.h
+ ../include/binOp.h
  ../include/example.h
  ../include/interperter.h
  ../include/lexer.h
+ ../include/num.h
+ ../include/parser.h
  ../include/token.h
  /Users/asabouri/Desktop/dev/HobbyLang/app/main.cpp
  exampleConfig.h

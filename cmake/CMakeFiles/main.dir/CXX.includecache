@@ -88,6 +88,14 @@ sys/time.h
 unistd.h
 -
 
+../include/AST.h
+
+../include/binOp.h
+token.h
+../include/token.h
+AST.h
+../include/AST.h
+
 ../include/example.h
 doctest.h
 ../include/doctest.h
@@ -95,10 +103,16 @@ doctest.h
 ../include/interperter.h
 token.h
 ../include/token.h
-lexer.h
-../include/lexer.h
+parser.h
+../include/parser.h
 string
 -
+AST.h
+../include/AST.h
+num.h
+../include/num.h
+binOp.h
+../include/binOp.h
 
 ../include/lexer.h
 token.h
@@ -107,6 +121,26 @@ stdlib.h
 -
 string
 -
+
+../include/num.h
+token.h
+../include/token.h
+stdlib.h
+-
+string
+-
+AST.h
+../include/AST.h
+token.h
+../include/token.h
+
+../include/parser.h
+token.h
+../include/token.h
+lexer.h
+../include/lexer.h
+AST.h
+../include/AST.h
 
 ../include/token.h
 

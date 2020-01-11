@@ -3,112 +3,62 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
-#include "lexer.h"
 
-Interperter::Interperter(Lexer lexer)
+
+AST ::AST(AST *left, Token token, AST *right)
 {
-    _current_token = lexer.get_next_token();
-    _lexer = lexer;
+    _left = left;
+    _token = token;
+    _right = right;
 }
-Token Interperter::getToken()
-{
-    return _current_token;
-}
-void Interperter::setToken(Token token)
-{
-    _current_token = token;
+AST :: AST(Token token){
+    _token = token;
 }
 
-void Interperter::eat(Type type)
+AST* AST :: getLeft()
 {
-    if (_current_token.getType() == type)
-    {
-        _current_token = _lexer.get_next_token(); /* Sets the current token */
-    }
-    else
-    {
-        std::cout << "Failed at eat";
-        _lexer.error();
-    }
+    return _left;
+}
+Token AST ::getToken()
+{
+    return _token;
+}
+AST* AST ::getRight()
+{
+    return _right;
 }
 
-int Interperter::expr()
+Interperter::Interperter()
 {
-    /*
-        expr   : term ((PLUS | MINUS) term)*
-        term   : factor ((MUL | DIV) factor)*
-        factor : INTEGER | LParen expr  RParen
-     */
-    int result = term();
-    while (_current_token.getType() == Type::SUBTRACT || _current_token.getType() == Type::PLUS)
+}
+
+Interperter ::Interperter(Parser parser)
+{
+    _parser = parser;
+}
+
+int Interperter ::visit(AST *node)
+{
+    switch (node->getToken().getType())
     {
-        Token token = _current_token;
-        eat(token.getType());
-        switch (token.getType())
-        {
-        case Type::SUBTRACT:
-            result = result - term();
-            break;
-        case Type::PLUS:
-            result = result + term();
-            break;
-        default:
-            break;
-        }
-    }
-    if (_lexer.getError())
-    {
-        std::cout << "Syntax error.";
+    case Type::DIV:
+        return visit(node->getLeft()) / visit(node->getRight());
+    case Type::MUL:
+        return visit(node->getLeft()) * visit(node->getRight());
+    case Type::PLUS:
+        return visit(node->getLeft()) + visit(node->getRight());
+    case Type::SUBTRACT:
+        return visit(node->getLeft()) - visit(node->getRight());
+    case Type::INTERGER:
+        return node->getToken().getValue();
+    default:
         return -1;
     }
-    return result;
 }
 
-int Interperter::term()
+
+int Interperter ::interpert()
 {
-    int result = factor();
-    while (_current_token.getType() == Type::DIV || _current_token.getType() == Type::MUL)
-    {
-        Token token = _current_token;
-        eat(token.getType());
-        switch (token.getType())
-        {
-        case Type::DIV:
-            result = result / factor();
-            break;
-        case Type::MUL:
-            result = result * factor();
-            break;
-        default:
-            break;
-        }
-    }
-    if (_lexer.getError())
-    {
-        std::cout << "Syntax error.";
-        return -1;
-    }
-    return result;
-}
-
-int Interperter::factor()
-{
-    if(_lexer.getError()) return -1;
-    
-    Token token = _current_token;
-    if (token.getType() == Type::INTERGER)
-    {
-        eat(Type::INTERGER);
-        return token.getValue();
-    }
-    else if(token.getType() == Type::LPAREN)
-    {
-        eat(Type::LPAREN);
-        int result = expr();
-        eat(Type::RPAREN);
-        return result;
-    }
-
-
-    return -1;
+    AST *tree = _parser.parse();
+    return visit(tree);
 }

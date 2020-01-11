@@ -109,10 +109,24 @@ CMakeFiles/engine.dir/src/lexer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/engine.dir/src/lexer.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/asabouri/Desktop/dev/HobbyLang/src/lexer.cpp -o CMakeFiles/engine.dir/src/lexer.cpp.s
 
+CMakeFiles/engine.dir/src/parser.cpp.o: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/src/parser.cpp.o: ../src/parser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/engine.dir/src/parser.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/engine.dir/src/parser.cpp.o -c /Users/asabouri/Desktop/dev/HobbyLang/src/parser.cpp
+
+CMakeFiles/engine.dir/src/parser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/engine.dir/src/parser.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/asabouri/Desktop/dev/HobbyLang/src/parser.cpp > CMakeFiles/engine.dir/src/parser.cpp.i
+
+CMakeFiles/engine.dir/src/parser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/engine.dir/src/parser.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/asabouri/Desktop/dev/HobbyLang/src/parser.cpp -o CMakeFiles/engine.dir/src/parser.cpp.s
+
 engine: CMakeFiles/engine.dir/src/example.cpp.o
 engine: CMakeFiles/engine.dir/src/interperter.cpp.o
 engine: CMakeFiles/engine.dir/src/token.cpp.o
 engine: CMakeFiles/engine.dir/src/lexer.cpp.o
+engine: CMakeFiles/engine.dir/src/parser.cpp.o
 engine: CMakeFiles/engine.dir/build.make
 
 .PHONY : engine

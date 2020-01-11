@@ -25,6 +25,11 @@
   "file": "/Users/asabouri/Desktop/dev/HobbyLang/src/lexer.cpp"
 },
 {
+  "directory": "/Users/asabouri/Desktop/dev/HobbyLang/cmake",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -DENABLE_DOCTEST_IN_LIBRARY -I/Users/asabouri/Desktop/dev/HobbyLang/cmake -I/Users/asabouri/Desktop/dev/HobbyLang/include -I/Users/asabouri/Desktop/dev/HobbyLang/external/doctest/doctest  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk   -Wall -Weverything -Wpedantic -Wno-switch-enum -Wno-unknown-warning-option -Wno-padded -Wno-undef -Wno-reserved-id-macro -fcomment-block-commands=test,retval -Wno-c++98-compat -Wno-c++98-compat-pedantic -Werror -std=c++1z -o CMakeFiles/engine.dir/src/parser.cpp.o -c /Users/asabouri/Desktop/dev/HobbyLang/src/parser.cpp",
+  "file": "/Users/asabouri/Desktop/dev/HobbyLang/src/parser.cpp"
+},
+{
   "directory": "/Users/asabouri/Desktop/dev/HobbyLang/cmake/tests",
   "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -DENABLE_DOCTEST_IN_LIBRARY -I/Users/asabouri/Desktop/dev/HobbyLang/cmake -I/Users/asabouri/Desktop/dev/HobbyLang/include -I/Users/asabouri/Desktop/dev/HobbyLang/external/doctest/doctest  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk   -Wall -Weverything -Wpedantic -Wno-switch-enum -Wno-unknown-warning-option -Wno-padded -Wno-undef -Wno-reserved-id-macro -fcomment-block-commands=test,retval -Wno-c++98-compat -Wno-c++98-compat-pedantic -Werror -std=c++1z -o CMakeFiles/unit_tests.dir/main.cpp.o -c /Users/asabouri/Desktop/dev/HobbyLang/tests/main.cpp",
   "file": "/Users/asabouri/Desktop/dev/HobbyLang/tests/main.cpp"

@@ -36,8 +36,10 @@ int main() {
     string text;
     getline (cin, text);
     Lexer lexer(text);
+    Parser parser(lexer);
     Interperter interperter(lexer);
-    cout << interperter.expr();
+
+    cout << interperter.interpert();
     if(lexer.getError())break;
   }
   return 1;

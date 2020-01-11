@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/asabouri/Desktop/dev/HobbyLang/src/example.cpp" "/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/example.cpp.o"
   "/Users/asabouri/Desktop/dev/HobbyLang/src/interperter.cpp" "/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/interperter.cpp.o"
   "/Users/asabouri/Desktop/dev/HobbyLang/src/lexer.cpp" "/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/lexer.cpp.o"
+  "/Users/asabouri/Desktop/dev/HobbyLang/src/parser.cpp" "/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/parser.cpp.o"
   "/Users/asabouri/Desktop/dev/HobbyLang/src/token.cpp" "/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/token.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

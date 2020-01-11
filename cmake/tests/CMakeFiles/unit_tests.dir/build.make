@@ -93,7 +93,8 @@ unit_tests_EXTERNAL_OBJECTS = \
 "/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/example.cpp.o" \
 "/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/interperter.cpp.o" \
 "/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/token.cpp.o" \
-"/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/lexer.cpp.o"
+"/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/lexer.cpp.o" \
+"/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/parser.cpp.o"
 
 unit_tests: tests/CMakeFiles/unit_tests.dir/main.cpp.o
 unit_tests: tests/CMakeFiles/unit_tests.dir/dummy.cpp.o
@@ -101,6 +102,7 @@ unit_tests: CMakeFiles/engine.dir/src/example.cpp.o
 unit_tests: CMakeFiles/engine.dir/src/interperter.cpp.o
 unit_tests: CMakeFiles/engine.dir/src/token.cpp.o
 unit_tests: CMakeFiles/engine.dir/src/lexer.cpp.o
+unit_tests: CMakeFiles/engine.dir/src/parser.cpp.o
 unit_tests: tests/CMakeFiles/unit_tests.dir/build.make
 unit_tests: tests/CMakeFiles/unit_tests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable ../unit_tests"

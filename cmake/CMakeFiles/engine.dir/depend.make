@@ -7,12 +7,19 @@ CMakeFiles/engine.dir/src/example.cpp.o: ../src/example.cpp
 
 CMakeFiles/engine.dir/src/interperter.cpp.o: ../include/interperter.h
 CMakeFiles/engine.dir/src/interperter.cpp.o: ../include/lexer.h
+CMakeFiles/engine.dir/src/interperter.cpp.o: ../include/parser.h
 CMakeFiles/engine.dir/src/interperter.cpp.o: ../include/token.h
 CMakeFiles/engine.dir/src/interperter.cpp.o: ../src/interperter.cpp
 
 CMakeFiles/engine.dir/src/lexer.cpp.o: ../include/lexer.h
 CMakeFiles/engine.dir/src/lexer.cpp.o: ../include/token.h
 CMakeFiles/engine.dir/src/lexer.cpp.o: ../src/lexer.cpp
+
+CMakeFiles/engine.dir/src/parser.cpp.o: ../include/interperter.h
+CMakeFiles/engine.dir/src/parser.cpp.o: ../include/lexer.h
+CMakeFiles/engine.dir/src/parser.cpp.o: ../include/parser.h
+CMakeFiles/engine.dir/src/parser.cpp.o: ../include/token.h
+CMakeFiles/engine.dir/src/parser.cpp.o: ../src/parser.cpp
 
 CMakeFiles/engine.dir/src/token.cpp.o: ../include/token.h
 CMakeFiles/engine.dir/src/token.cpp.o: ../src/token.cpp

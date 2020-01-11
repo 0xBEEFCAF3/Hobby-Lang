@@ -79,13 +79,15 @@ main_EXTERNAL_OBJECTS = \
 "/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/example.cpp.o" \
 "/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/interperter.cpp.o" \
 "/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/token.cpp.o" \
-"/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/lexer.cpp.o"
+"/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/lexer.cpp.o" \
+"/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles/engine.dir/src/parser.cpp.o"
 
 main: CMakeFiles/main.dir/app/main.cpp.o
 main: CMakeFiles/engine.dir/src/example.cpp.o
 main: CMakeFiles/engine.dir/src/interperter.cpp.o
 main: CMakeFiles/engine.dir/src/token.cpp.o
 main: CMakeFiles/engine.dir/src/lexer.cpp.o
+main: CMakeFiles/engine.dir/src/parser.cpp.o
 main: CMakeFiles/main.dir/build.make
 main: CMakeFiles/main.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/asabouri/Desktop/dev/HobbyLang/cmake/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable main"
