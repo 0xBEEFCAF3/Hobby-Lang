@@ -1,38 +1,61 @@
+#pragma once
+
 #include "token.h"
 #include "parser.h"
+#include "lexer.h"
 #include <string>
-#pragma once
 
 #ifndef interperter_h
 #define interperter_h
 
-class AST 
+struct ASTNode{
+    ASTNode *_left;
+    Token _token;
+    ASTNode *_right;
+};
+
+
+class AST
 {
 private:
-    AST *_left;
-    Token _token;
-    AST *_right;
-
+    ASTNode* _ASTNode;
 public:
     AST();
     AST(Token token);
-    AST(AST *left, Token op, AST *right);
-    AST *getLeft();
+    AST(struct ASTNode* node);
+    struct ASTNode* getNode();
+    void setNode(struct ASTNode* node);
+};
+
+class Parser
+{
+private:
+    Token _current_token;
+    Lexer _lexer;
+    ASTNode  _root;
+
+public:
+    Parser();
+    Parser(Lexer lexer);
     Token getToken();
-    AST *getRight();
+    void setToken(Token token);
+    void eat(Type type);
+    struct ASTNode expr();
+    struct ASTNode term();
+    struct ASTNode factor();
+    struct ASTNode parse();
+    AST* getAST();
 };
 
 class Interperter
 {
 private:
     Parser _parser;
+
 public:
     Interperter();
     Interperter(Parser parser);
-    int visitBinOp(AST* node);
-    int visitNum(AST* node);
-    int visit(AST* node);
-    int visitNum(AST* node);
+    int visit(struct ASTNode *node);
     int interpert();
 };
 

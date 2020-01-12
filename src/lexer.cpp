@@ -2,6 +2,7 @@
 #include "lexer.h"
 #include <stdlib.h>
 #include <string>
+#include <iostream> 
 
 
 Lexer::Lexer(){}
@@ -64,6 +65,7 @@ int Lexer::interger()
         i++;
         advance();
     }
+    // std::cout<<"in interger  " << std::atoi(tempStr) << std::endl;
     return std::atoi(tempStr);
 }
 
@@ -80,7 +82,8 @@ Token Lexer::get_next_token()
         }
         if (std::isdigit(_current_char))
         {
-            return Token(Type::INTERGER, interger());
+            Token tempToken = Token(Type::INTERGER, interger());
+            return tempToken;
         }
         if (_current_char == '+')
         {
