@@ -30,7 +30,7 @@ int main() {
             << PROJECT_VERSION_PATCH
             << "."
             << PROJECT_VERSION_TWEAK
-            << std::endl;
+            << endl;
 
   while(1){
     string text;
@@ -38,8 +38,7 @@ int main() {
     Lexer lexer(text);
     Parser parser(lexer);
     Interperter interperter(lexer);
-
-    cout << interperter.interpert();
+    cout << interperter.interpert() << endl;
     if(lexer.getError())break;
   }
   return 1;

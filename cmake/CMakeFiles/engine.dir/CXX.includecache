@@ -28,6 +28,18 @@ string
 
 ../include/token.h
 
+/Users/asabouri/Desktop/dev/HobbyLang/src/lexer.cpp
+token.h
+/Users/asabouri/Desktop/dev/HobbyLang/src/token.h
+lexer.h
+/Users/asabouri/Desktop/dev/HobbyLang/src/lexer.h
+stdlib.h
+-
+string
+-
+iostream
+-
+
 /Users/asabouri/Desktop/dev/HobbyLang/src/parser.cpp
 stdlib.h
 -

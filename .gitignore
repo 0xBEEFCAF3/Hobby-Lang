@@ -32,5 +32,8 @@
 *.app
 *.x
 
+# mac os
+.DS_Store
+
 # Build directory
 build/

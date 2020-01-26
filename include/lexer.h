@@ -1,5 +1,5 @@
 #pragma once
-
+    
 #include "token.h"
 #include <stdlib.h>
 #include <string>

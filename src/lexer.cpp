@@ -65,7 +65,6 @@ int Lexer::interger()
         i++;
         advance();
     }
-    // std::cout<<"in interger  " << std::atoi(tempStr) << std::endl;
     return std::atoi(tempStr);
 }
 
