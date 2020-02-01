@@ -23,10 +23,26 @@ stdlib.h
 -
 string
 -
+map
+-
 
 ../include/parser.h
 
 ../include/token.h
+string
+-
+
+/Users/asabouri/Desktop/dev/HobbyLang/src/interperter.cpp
+interperter.h
+/Users/asabouri/Desktop/dev/HobbyLang/src/interperter.h
+token.h
+/Users/asabouri/Desktop/dev/HobbyLang/src/token.h
+stdlib.h
+-
+iostream
+-
+string
+-
 
 /Users/asabouri/Desktop/dev/HobbyLang/src/lexer.cpp
 token.h
