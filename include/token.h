@@ -1,3 +1,5 @@
+#include <string>
+
 #pragma once
 
 #ifndef token_h
@@ -12,7 +14,13 @@ enum class Type{
     LPAREN,
     RPAREN,
     ENDOFFILE,
-    EMPTY
+    EMPTY,
+    BEGIN,
+    END,
+    DOT,
+    ASSIGN,
+    SEMI,
+    ID
 };
 
 class Token
@@ -20,12 +28,18 @@ class Token
 private:
     Type _type;
     int _value;
+    std::string _value_s;
+
 public:
     Token();
     Token(Type type);
     Token(Type type, int value);
+    Token(Type type, std::string value);
+
     void printToken();
     Type getType();
     int getValue();
+    std::string getStringValue();
+    
 };
 #endif

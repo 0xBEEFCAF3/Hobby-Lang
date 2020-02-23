@@ -10,6 +10,12 @@ Token::Token(Type type, int value)
     _value = value;
 }
 
+Token::Token(Type type, std::string value)
+{
+    _type = type;
+    _value_s = value;
+}
+
 Token::Token(Type type)
 {
     _type = type;
@@ -39,3 +45,8 @@ int Token::getValue()
 {
     return _value;
 }
+
+std::string Token::getStringValue(){
+    return _value_s;
+}
+

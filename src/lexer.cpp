@@ -2,11 +2,11 @@
 #include "lexer.h"
 #include <stdlib.h>
 #include <string>
-#include <iostream> 
+#include <iostream>
 
-
-Lexer::Lexer(){}
-Lexer::Lexer(std::string text){
+Lexer::Lexer() {}
+Lexer::Lexer(std::string text)
+{
     _text = text;
     _pos = 0;
     _has_error = false;
@@ -50,7 +50,8 @@ void Lexer::advance()
 
 void Lexer::skipWhiteSpace()
 {
-    while (_current_char != '\0' && _current_char == ' ')
+
+    while (_current_char != '\0' && (_current_char == ' '))
         advance();
 }
 
@@ -68,16 +69,56 @@ int Lexer::interger()
     return std::atoi(tempStr);
 }
 
+char Lexer::peek()
+{
+    size_t peekPos = static_cast<size_t>(_pos + 1);
+
+    if (peekPos > _text.length())
+        return '\0';
+
+    return _text.at(peekPos);
+}
+
+bool Lexer ::isReservedKeyword(std::string s)
+{
+    return (_reserved_key_words.find(s) != _reserved_key_words.end());
+}
+
+Token Lexer::_id()
+{
+    /** Handle identifiers and reserved keywords */
+    std::string result;
+    while (_current_char != '\0' && std::isalnum(_current_char) && _current_char != ';')
+    {
+        std::cout << "foo " << _current_char << "\t " << _pos << std::endl;
+        result.append(std::string(1, _current_char));
+        advance();
+    }
+    /** check if identifier is in reserved map */
+    if (_reserved_key_words.find(result) == _reserved_key_words.end())
+        return Token(Type::ID, result);
+
+    return _reserved_key_words[result];
+}
+
 Token Lexer::get_next_token()
 {
     std::string text = _text;
-
     while (_current_char != '\0')
     {
+        if (_current_char == '\n')
+        {
+            advance();
+            continue;
+        }
         if (_current_char == ' ')
         {
             skipWhiteSpace();
             continue;
+        }
+        if (std::isalpha(_current_char))
+        {
+            return _id();
         }
         if (std::isdigit(_current_char))
         {
@@ -114,9 +155,27 @@ Token Lexer::get_next_token()
             advance();
             return Token(Type::LPAREN);
         }
+        if (_current_char == ':' && peek() == '=')
+        {
+            std::cout << "[LEXER] about to assign a variable " << std::endl;
+            advance();
+            advance();
+            return Token(Type::ASSIGN, std::string(":="));
+        }
+        if (_current_char == ';')
+        {
+            std::cout << "found semi " << std::endl;
+            advance();
+            return Token(Type::SEMI, std::string(";"));
+        }
+        if (_current_char == '.')
+        {
+            advance();
+            return Token(Type::DOT, std::string("."));
+        }
         //Error state
         error();
         return Token(Type::EMPTY);
-    }
+    } //end of while
     return Token(Type::ENDOFFILE);
 }
