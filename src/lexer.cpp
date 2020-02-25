@@ -66,6 +66,7 @@ int Lexer::interger()
         i++;
         advance();
     }
+    std::cout << "[LEXER] :found interger " << tempStr << std::endl;
     return std::atoi(tempStr);
 }
 
@@ -90,7 +91,7 @@ Token Lexer::_id()
     std::string result;
     while (_current_char != '\0' && std::isalnum(_current_char) && _current_char != ';')
     {
-        std::cout << "foo " << _current_char << "\t " << _pos << std::endl;
+        // std::cout << "foo " << _current_char << "\t " << _pos << std::endl;
         result.append(std::string(1, _current_char));
         advance();
     }
@@ -157,14 +158,12 @@ Token Lexer::get_next_token()
         }
         if (_current_char == ':' && peek() == '=')
         {
-            std::cout << "[LEXER] about to assign a variable " << std::endl;
             advance();
             advance();
             return Token(Type::ASSIGN, std::string(":="));
         }
         if (_current_char == ';')
         {
-            std::cout << "found semi " << std::endl;
             advance();
             return Token(Type::SEMI, std::string(";"));
         }

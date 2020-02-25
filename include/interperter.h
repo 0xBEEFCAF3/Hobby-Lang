@@ -78,7 +78,7 @@ class Interperter
 {
 private:
     Parser _parser;
-    std::map<std::string, ASTNode> _globalScope;
+    std::map<std::string, int> _globalScope;
     
 public:
     Interperter();

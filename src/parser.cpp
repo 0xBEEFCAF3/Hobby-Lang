@@ -53,8 +53,6 @@ ASTNode Parser::program()
 ASTNode Parser::compoundStatment()
 {
     //    compound_statement: BEGIN statement_list END
-    std::cout << "in compound ";
-    printf("%d\n", _current_token.getType());
     ASTNode node;
     eat(Type::BEGIN);
     node._children = statmentList();
@@ -89,14 +87,11 @@ std::vector<ASTNode> Parser::statmentList()
 ASTNode Parser::statment()
 {
     /**
-     * 
      * statement : compound_statement
               | assignment_statement
               | empty
      **/
     ASTNode node;
-    std::cout << "in statment ";
-    printf("%d\n", _current_token.getType());
     if(_current_token.getType() == Type::BEGIN)
         node = compoundStatment();
     else if(_current_token.getType() == Type::ID)
@@ -109,24 +104,30 @@ ASTNode Parser::statment()
 
 ASTNode Parser::assignmentStatment()
 {
-    std::cout << "[PARSER] in assignmentStatment" << std::endl;
     ASTNode left = variable();
     Token token = _current_token;
     eat(Type::ASSIGN);
+
     ASTNode right = expr();
-     
     /** Set up the current next node */
     ASTNode *rightNode = new ASTNode;
+    ASTNode *leftNode = new ASTNode;
+
     rightNode->_left = right._left;
     rightNode->_right = right._right;
     rightNode->_token = right._token;
-    ASTNode *leftNode = new ASTNode;
+    rightNode->_type = right._type;
+
+
     leftNode->_left = left._left;
     leftNode->_right = left._right;
     leftNode->_token = left._token;
+    leftNode->_type = left._type;
+    
     std::vector<ASTNode> _emptyChildren;
     ASTNode node = {leftNode, token, rightNode, _emptyChildren, ASTNodeType::ASSIGN };
 
+    printf("[PARSER] ASSIGN right ast type:  %d ------- %d\n", node._right->_type, right._type);
     return node;
 }
 
@@ -169,6 +170,7 @@ ASTNode Parser ::factor()
         rightNode->_left = t._left;
         rightNode->_right = t._right;
         rightNode->_token = t._token;
+        rightNode->_type = t._type;
         /* Always assign unary op expr to right node */
         unaryOp._right = rightNode;
         /* Init left branch */
@@ -189,6 +191,7 @@ ASTNode Parser ::factor()
         rightNode->_left = t._left;
         rightNode->_right = t._right;
         rightNode->_token = t._token;
+        rightNode->_type = t._type;
         /* Always assign unary op expr to right node */
         unaryOp._right = rightNode;
         /* Init left branch */
@@ -200,11 +203,12 @@ ASTNode Parser ::factor()
     }
     else if (_current_token.getType() == Type::INTERGER)
     {
-        ASTNode tempNode;
-        tempNode._token = Token(Type::INTERGER, _current_token.getValue());
-        tempNode._type = ASTNodeType::VALUE;
+        ASTNode *tempNode = new ASTNode;
+        tempNode->_token = Token(Type::INTERGER, _current_token.getValue());
+        tempNode->_type = ASTNodeType::VALUE;
+     
         eat(Type::INTERGER);
-        return tempNode;
+        return *tempNode;
     }
     else if (_current_token.getType() == Type::LPAREN)
     {
@@ -227,21 +231,25 @@ ASTNode Parser ::term()
 
     while (_current_token.getType() == Type::MUL || _current_token.getType() == Type::DIV)
     {
-        if (_current_token.getType() == Type::MUL)
+        if (_current_token.getType() == Type::MUL)        
         {
             eat(Type::MUL);
             ASTNode t = term();
-
+            
             ASTNode *rightNode = new ASTNode;
             ASTNode *leftNode = new ASTNode;
 
             rightNode->_left = t._left;
             rightNode->_right = t._right;
             rightNode->_token = t._token;
+            rightNode->_type = t._type;
 
             leftNode->_left = node._left;
             leftNode->_right = node._right;
             leftNode->_token = node._token;
+            leftNode->_type = node._type;
+
+            printf("[PARSER] in MUL r: %d --- l: %d\n", node._token.getValue(), t._token.getValue());
 
             std::vector<ASTNode> _emptyChildren;
             node = {leftNode, Token(Type::MUL), rightNode, _emptyChildren, ASTNodeType::BINARY};
@@ -257,10 +265,12 @@ ASTNode Parser ::term()
             rightNode->_left = t._left;
             rightNode->_right = t._right;
             rightNode->_token = t._token;
+            rightNode->_type = t._type;
 
             leftNode->_left = node._left;
             leftNode->_right = node._right;
             leftNode->_token = node._token;
+            leftNode->_type = node._type;
 
             std::vector<ASTNode> _emptyChildren;
             node = {leftNode, Token(Type::DIV), rightNode, _emptyChildren, ASTNodeType::BINARY};
@@ -280,23 +290,26 @@ ASTNode Parser ::expr()
 
     ASTNode node;
     node = term();
+    printf("[PARSER] : node ast type in EXPR %d\n" , node._type);
     while (_current_token.getType() == Type::PLUS || _current_token.getType() == Type::SUBTRACT)
     {
         if (_current_token.getType() == Type::PLUS)
         {
             eat(Type::PLUS);
             ASTNode t = term();
-
+            
             ASTNode *rightNode = new ASTNode;
             ASTNode *leftNode = new ASTNode;
 
             rightNode->_left = t._left;
             rightNode->_right = t._right;
             rightNode->_token = t._token;
+            rightNode->_type = t._type;
 
             leftNode->_left = node._left;
             leftNode->_right = node._right;
             leftNode->_token = node._token;
+            leftNode->_type = node._type;
 
             std::vector<ASTNode> _emptyChildren;
             node = {leftNode, Token(Type::PLUS), rightNode, _emptyChildren, ASTNodeType::BINARY};
@@ -312,10 +325,12 @@ ASTNode Parser ::expr()
             rightNode->_left = t._left;
             rightNode->_right = t._right;
             rightNode->_token = t._token;
+            rightNode->_type = t._type;
 
             leftNode->_left = node._left;
             leftNode->_right = node._right;
             leftNode->_token = node._token;
+            leftNode->_type = node._type;
 
             std::vector<ASTNode> _emptyChildren;
             node = {leftNode, Token(Type::SUBTRACT), rightNode, _emptyChildren, ASTNodeType::BINARY};

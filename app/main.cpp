@@ -35,8 +35,8 @@ int main()
   // while(1){
   string text = "BEGIN;"
                   // "BEGIN;"
-                    "number := 2;"
-                    "x := 1;"
+                    "number := 5 * 10 ;"
+                    "x := number;"
                   // "END;"
                   "END.";
                 //     "a := number;"
