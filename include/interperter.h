@@ -20,6 +20,11 @@ enum class ASTNodeType{
     COMPOUND,
     ASSIGN,
     NOOP,
+    PROGRAM,
+    BLOCK,
+    VARDECL,
+    Type,
+
 };
 
 struct ASTNode

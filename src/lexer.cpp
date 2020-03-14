@@ -55,19 +55,33 @@ void Lexer::skipWhiteSpace()
         advance();
 }
 
-int Lexer::interger()
+Token Lexer::number()
 {
     //Return a (multidigit) integer consumed from the input
     int i = 0;
-    char tempStr[10];
+    char tempStr[256];
     while (_current_char != '\0' && std::isdigit(_current_char))
     {
         tempStr[i] = _current_char;
         i++;
         advance();
     }
-    std::cout << "[LEXER] :found interger " << tempStr << std::endl;
-    return std::atoi(tempStr);
+
+    //Are we dealing with a floating point number
+    if(_current_char == '.'){
+        tempStr[i] = _current_char;
+        i++;
+        advance();
+       while (_current_char != '\0' && std::isdigit(_current_char))
+       {
+            tempStr[i] = _current_char;
+            i++;
+            advance(); 
+            return Token(Type::REAL_CONST, std::atof(tempStr));
+       } 
+    }
+
+    return Token(Type::REAL_CONST, std::atoi(tempStr));
 }
 
 char Lexer::peek()
@@ -83,6 +97,13 @@ char Lexer::peek()
 bool Lexer ::isReservedKeyword(std::string s)
 {
     return (_reserved_key_words.find(s) != _reserved_key_words.end());
+}
+
+void Lexer :: skipComment(){
+    while(_current_char != '}')
+        advance();
+
+    advance(); //For the actual curly brace
 }
 
 Token Lexer::_id()
@@ -123,8 +144,7 @@ Token Lexer::get_next_token()
         }
         if (std::isdigit(_current_char))
         {
-            Token tempToken = Token(Type::INTERGER, interger());
-            return tempToken;
+            return number();
         }
         if (_current_char == '+')
         {

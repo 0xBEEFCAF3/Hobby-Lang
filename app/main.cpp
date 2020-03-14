@@ -34,17 +34,14 @@ int main()
 
   // while(1){
   string text = "BEGIN;"
-                  // "BEGIN;"
                     "number := 5 * 10 ;"
                     "x := number;"
-                  // "END;"
-                  "END.";
-                //     "a := number;"
-                //     "b := 10 * a + 10 * number / 4;"
-                //     "c := a - - b;"
-                //   "END;"
-                //   "x := 11;"
-                // "END.";
+                    "a := number;"
+                    "b := 10 * a + 10 * number / 4;"
+                    "c := a - - b;"
+                  "END;"
+                  "x := 11;"
+                "END.";
 
   // getline (cin, text);
   

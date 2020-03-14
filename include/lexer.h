@@ -20,7 +20,11 @@ private:
     std::map<std::string, Token> _reserved_key_words =
      {
         {"BEGIN",   {Token( Type::BEGIN, "BEGIN")}},
-        {"END",     {Token(Type::END, "END")}}    
+        {"END",     {Token(Type::END, "END")}},
+        {"PROGRAM", {Token(Type::PROGRAM, "PROGRAM")}}, 
+        {"VAR", {Token(Type::VAR, "VAR")}}, 
+        {"INTEGER", {Token(Type::INTEGER, "INTEGER")}}, 
+        {"REAL", {Token(Type::REAL, "REAL")}},
     };
 public:
     Lexer();
@@ -35,10 +39,11 @@ public:
     bool getError();
     void advance();
     void skipWhiteSpace();
-    int interger();
+    void skipComment();
+    Token number();
     char peek();
     bool isReservedKeyword(std::string);
-
+    
 
 };
 #endif
