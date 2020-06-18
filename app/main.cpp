@@ -34,17 +34,29 @@ int main()
 
   // while(1){
   string text = "BEGIN;"
-                    "number := 5 * 10 ;"
-                    "x := number;"
-                    "a := number;"
-                    "b := 10 * a + 10 * number / 4;"
-                    "c := a - - b;"
-                  "END;"
-                  "x := 11;"
+                "number := 5 * 10 ;"
+                "x := number;"
+                "a := number;"
+                "b := 10 * a + 10 * number / 4;"
+                "c := a - - b;"
+                "END;"
+                "x := 11;"
                 "END.";
 
-  // getline (cin, text);
-  
+  text = "PROGRAM;"
+         "VAR;"
+        //  "a, b : INTEGER;"
+        //  "y    : REAL;"
+
+         "BEGIN;"
+        //  "a := 23 + 2;"
+        //  "b := 4 * 4;"
+         "c := 3.14;"
+         //"b := 10 * a + 10 * a / 4;"
+         //"y := 20 / 7 + 3.14;"
+         "END.";
+      // getline (cin, text);
+
   Lexer lexer(text);
   Parser parser(lexer);
   Interperter interperter(lexer);

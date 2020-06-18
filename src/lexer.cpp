@@ -77,11 +77,13 @@ Token Lexer::number()
             tempStr[i] = _current_char;
             i++;
             advance(); 
-            return Token(Type::REAL_CONST, std::atof(tempStr));
-       } 
+       }
+        printf("[LEXER]: NUMBER:: %f \n" , (std::atof(tempStr)));
+        return Token(Type::REAL_CONST, static_cast<float>(std::atof(tempStr)));
     }
-
-    return Token(Type::REAL_CONST, std::atoi(tempStr));
+    printf("[LEXER]: NUMBER:: %d \n" , (std::atoi(tempStr)));
+ 
+    return Token(Type::INTEGER_CONST, std::atoi(tempStr));
 }
 
 char Lexer::peek()
@@ -116,9 +118,15 @@ Token Lexer::_id()
         result.append(std::string(1, _current_char));
         advance();
     }
+    std::cout << "[LEXER] :: result of id : " << result << std::endl;
+
     /** check if identifier is in reserved map */
-    if (_reserved_key_words.find(result) == _reserved_key_words.end())
+    if (_reserved_key_words.find(result) == _reserved_key_words.end()){
+    std::cout << "[LEXER] :: Adding id:: " << result << std::endl;
         return Token(Type::ID, result);
+
+    }
+
 
     return _reserved_key_words[result];
 }
@@ -191,6 +199,23 @@ Token Lexer::get_next_token()
         {
             advance();
             return Token(Type::DOT, std::string("."));
+        }
+        if(_current_char == '{'){
+            advance();
+            skipComment();
+            continue;
+        }
+        if(_current_char == ':'){
+            advance();
+            return Token(Type::COLON);
+        }
+        if(_current_char == ','){
+            advance();
+            return Token(Type::COMMA);
+        }
+        if(_current_char == '/'){
+            advance();
+            return Token(Type::DIV);
         }
         //Error state
         error();

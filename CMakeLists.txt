@@ -22,6 +22,7 @@ option(ENABLE_DOCTESTS "Include tests in the library. Setting this to OFF will r
 
 # Include stuff. No change needed.
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
+set(CMAKE_CXX_COMPILER, /usr/bin/c++)
 include(ConfigSafeGuards)
 include(Colors)
 include(CTest)

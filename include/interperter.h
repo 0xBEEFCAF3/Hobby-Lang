@@ -27,6 +27,8 @@ enum class ASTNodeType{
 
 };
 
+
+
 struct ASTNode
 {
     ASTNode *_left;
@@ -34,24 +36,14 @@ struct ASTNode
     ASTNode *_right;
     std::vector<ASTNode> _children;
     ASTNodeType _type;
+    std::vector<ASTNode> _declarations;
+    ASTNode *_varNode;
+    ASTNode *_typeNode;
 };
-
-class AST
-{
-private:
-    ASTNode *_ASTNode;
-    std::vector<ASTNode> _children;
-
-public:
-    AST();
-    AST(Token token);
-    AST(struct ASTNode *node);
-    AST(std::vector<ASTNode> root);
-
-    struct ASTNode *getNode();
-    void setNode(struct ASTNode *node);
+struct ASTProgramNode {
+    std::string progName;
+    ASTNode blockNode;
 };
-
 class Parser
 {
 private:
@@ -68,14 +60,18 @@ public:
     struct ASTNode expr();
     struct ASTNode term();
     struct ASTNode factor();
-    struct ASTNode parse();
-    struct ASTNode program();
+    struct ASTProgramNode parse();
+    struct ASTProgramNode program();
     struct ASTNode compoundStatment();
     std::vector<ASTNode> statmentList();
     struct ASTNode statment();
     struct ASTNode assignmentStatment();
     struct ASTNode variable();
     struct ASTNode empty();
+    struct ASTNode block();
+    std::vector<ASTNode> declarations();
+    std::vector<ASTNode>variableDeclarations();
+    struct ASTNode typeSpec();
 
 };
 
@@ -83,12 +79,12 @@ class Interperter
 {
 private:
     Parser _parser;
-    std::map<std::string, int> _globalScope;
+    std::map<std::string, float> _globalScope;
     
 public:
     Interperter();
     Interperter(Parser parser);
-    int visit(ASTNode node);
+    float visit(ASTNode node);
     int interpert();
     void printGlobalScope();
 };

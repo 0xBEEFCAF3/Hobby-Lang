@@ -40,34 +40,45 @@ Interperter ::Interperter(Parser parser)
     _parser = parser;
 }
 
-int Interperter ::visit(ASTNode node)
+float Interperter ::visit(ASTNode node)
 {
     printf("[INTERPERTER] : visiting ast type: %d \n" , node._type);
     switch (node._type)
     {
+    case ASTNodeType::PROGRAM:
+    case ASTNodeType::VARDECL:
+    case ASTNodeType::Type:
+    break;
+    case ASTNodeType::BLOCK:
+        for(std::vector<ASTNode>::iterator it = node._declarations.begin(); it != node._declarations.begin(); it++)
+            visit(*it);
+        
+        node._type = ASTNodeType::COMPOUND;
+        visit(node);
+        break;
+
     case ASTNodeType::COMPOUND:
         std::cout << "[INTERPERTER] Found compound" << std::endl;
         for (ASTNode childNode : node._children)
             visit(childNode);
 
-        return NO_OPERATION;
-
+        return static_cast<float>(NO_OPERATION);
     case ASTNodeType::VAR:
         /** Check if variable exists */
         if (_globalScope.find(node._token.getStringValue()) == _globalScope.end())
         {
             std::cout << "Key not found" << std::endl;
-            return ERROR_NODE_VISIT;
+            return static_cast<float>(ERROR_NODE_VISIT);
         }
-        return _globalScope[node._token.getStringValue()];
-
+        return static_cast<float>(_globalScope[node._token.getStringValue()]);
+        
     case ASTNodeType::ASSIGN:
         //TODO add some string checking here
 
-        printf("[INTERPERTER] right node in ASSIGN %d\n", node._right->_token.getType());
+        // printf("[INTERPERTER] right node in ASSIGN %d -- %s \n", node._right->_token.getValue(), node._left->_token.getStringValue().c_str());
 
         _globalScope[node._left->_token.getStringValue()] = visit(*node._right);
-        return NO_OPERATION;
+        return static_cast<float>(NO_OPERATION);
     case ASTNodeType::BINARY:
         
         switch (node._token.getType())
@@ -77,7 +88,6 @@ int Interperter ::visit(ASTNode node)
         case Type::MUL:
             return visit(*node._left) * visit(*node._right);
         case Type::PLUS:
-            std::cout << "[INTERPERTER] Adding numbers" << std::endl;
             return visit(*node._left) + visit(*node._right);
         case Type::SUBTRACT:
             return visit(*node._left) - visit(*node._right);
@@ -95,12 +105,20 @@ int Interperter ::visit(ASTNode node)
             return ERROR_NODE_VISIT;
         }
     case ASTNodeType::VALUE:
-        return node._token.getValue();
+        switch (node._token.getType())
+        {
+        case Type::REAL_CONST:
+            return node._token.getFloatValue();
+        case Type::INTEGER_CONST:
+            return static_cast<float>(node._token.getValue());
+        default:
+            return static_cast<float>(node._token.getValue());
+        }
     case ASTNodeType::NOOP:
-        return NO_OPERATION;
+        return  static_cast<float>(NO_OPERATION);
     }
 
-    return ERROR_NODE_VISIT;
+    return static_cast<float>(ERROR_NODE_VISIT);
 }
 
 void Interperter::printGlobalScope()
@@ -115,8 +133,8 @@ void Interperter::printGlobalScope()
 int Interperter ::interpert()
 {
     std::cout << "[INTERPERTER] starting to interpert " << std::endl ;
-    ASTNode tree;
-    tree = _parser.parse();
+    // ASTNode tree;
+    // tree = _parser.parse();
 
-    return visit(tree);
+    return visit(_parser.parse().blockNode);
 }

@@ -21,6 +21,7 @@ private:
      {
         {"BEGIN",   {Token( Type::BEGIN, "BEGIN")}},
         {"END",     {Token(Type::END, "END")}},
+        {"DIV",     {Token(Type::DIV, "DIV")}},
         {"PROGRAM", {Token(Type::PROGRAM, "PROGRAM")}}, 
         {"VAR", {Token(Type::VAR, "VAR")}}, 
         {"INTEGER", {Token(Type::INTEGER, "INTEGER")}}, 
